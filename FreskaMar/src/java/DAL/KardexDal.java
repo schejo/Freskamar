@@ -54,12 +54,12 @@ public class KardexDal {
 "                END AS UBICACION,\n" +
 "                a.pro_stock,\n" +
 "                (a.pro_precio_venta * A.pro_stock) AS TOTAL\n" +
-"                FROM almacen.productos a;";
+"                FROM productos a;";
 
         String query2 = "SELECT a.pro_id,a.pro_descripcion,\n"
                 + "                a.pro_minimo, SUM( a.pro_precio_venta) as TOTAL1, a.pro_maximo,\n"
                 + "                a.pro_ubicacion, SUM(a.pro_stock) as TOTAL2\n"
-                + "                FROM almacen.productos a ";
+                + "                FROM productos a ";
 
         try {
             conexion = cnn.Conexion();

@@ -90,7 +90,7 @@ public class ProductosDal {
                 + "pro_minimo,\n"
                 + "pro_maximo,\n"
                 + "pro_ubicacion\n"
-                + " from almacen.productos\n"
+                + " from productos\n"
                 + "WHERE pro_id = '" + codigo + "' ";
         try {
             conexion = cnn.Conexion();
@@ -156,7 +156,7 @@ public class ProductosDal {
                 + "pro_minimo,\n"
                 + "pro_maximo,\n"
                 + "pro_ubicacion\n"
-                + " FROM almacen.productos\n"
+                + " FROM productos\n"
                 + " ORDER BY  pro_id asc";
 
         try {
@@ -208,7 +208,7 @@ public class ProductosDal {
         Statement st = null;
         ResultSet rs = null;
 
-        String sql = "INSERT INTO Almacen.productos"
+        String sql = "INSERT INTO productos"
                 + "(pro_id,\n"
                 + "pro_descripcion,\n"
                 + "pro_tipo,\n"
@@ -290,7 +290,7 @@ public class ProductosDal {
             System.out.println("Actualizar " + tipo_servicio);
             st = conexion.createStatement();
 
-            st.executeUpdate("UPDATEJK Almacen.productos"
+            st.executeUpdate("UPDATEJK productos"
                     + " set pro_descripcion = '" + descripcion + "'"
                     + ",pro_tipo = '" + tipo + "'"
                     + ",pro_tipo_servicio = '" + tipo_servicio + "'"
@@ -339,7 +339,7 @@ public class ProductosDal {
             System.out.println("Eliminar " + codigo);
             st = conexion.createStatement();
 
-            st.executeUpdate("DELETE Almacen.productos WHERE pro_id = " + codigo + " ");
+            st.executeUpdate("DELETE productos WHERE pro_id = " + codigo + " ");
             Clients.showNotification("REGISTRO ELIMINADO <br/> CON EXITO  <br/>");
             System.out.println("Eliminacion Exitosa.! ");
             st.close();
@@ -367,13 +367,13 @@ public class ProductosDal {
         ProductosMd Buscar = null;
 
         String sql = "SELECT P.PRO_ID,\n"
-                + "       CONCAT( IFNULL(P.PRO_DESCRIPCION,' '),\" \", IFNULL(P.PRO_MARCA,' ') ,\" \",IFNULL((CASE P.PRO_PRESENTACION\n"
+                + "       CONCAT( IFNULL(P.PRO_DESCRIPCION,' '),' ', IFNULL(P.PRO_MARCA,' ') ,' ',IFNULL((CASE P.PRO_PRESENTACION\n"
                 + "                   WHEN 'U' THEN 'UNIDAD'\n"
                 + "                    WHEN 'C' THEN 'CAJA'\n"
                 + "                    WHEN 'B' THEN 'BOLSA'\n"
-                + "                    WHEN 'L' THEN 'LITRO' ELSE ' ' END),' '),\" \", case \n"
+                + "                    WHEN 'L' THEN 'LITRO' ELSE ' ' END),' '),' ', case \n"
                 + "  when P.PRO_CONVERSION IS NULL OR P.PRO_CONVERSION = 0 then ' '  \n"
-                + "  else  CONCAT(\"X \",P.PRO_CONVERSION)\n"
+                + "  else  CONCAT('X ',P.PRO_CONVERSION)\n"
                 + "end) DESCRIPCION,\n"
                 + "       P.PRO_TIPO_SERVICIO,\n"
                 + "       IFNULL(FORMAT(P.PRO_PRECIO_VENTA,2),'-'),\n"

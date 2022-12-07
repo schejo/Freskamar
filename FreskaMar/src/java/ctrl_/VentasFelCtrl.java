@@ -214,15 +214,15 @@ public class VentasFelCtrl extends GenericForwardComposer {
 //
 ////        cbxDetalleBusqueda.setModel(new ListModelList(datos));
         util.cargaCombox("SELECT P.PRO_ID,\n"
-                + "       CONCAT( IFNULL(P.PRO_DESCRIPCION,' '),\" \", IFNULL(P.PRO_MARCA,' ') ,\" \",\" \", case \n"
+                + "       CONCAT( IFNULL(P.PRO_DESCRIPCION,' ')' ', IFNULL(P.PRO_MARCA,' ') ,' ',' ', case \n"
                 + "  when P.PRO_CONVERSION IS NULL OR P.PRO_CONVERSION = 0 then ' '  \n"
-                + "  else  CONCAT(\"X \",P.PRO_CONVERSION)\n"
+                + "  else  CONCAT('X ',P.PRO_CONVERSION)\n"
                 + "end) DESCRIPCION,\n"
                 + "       P.PRO_TIPO_SERVICIO,\n"
                 + "       IFNULL(FORMAT(P.PRO_PRECIO_VENTA,2),'-'),\n"
                 + "       IFNULL(FORMAT(IFNULL(P.PRO_DESCUENTO,0),2),'-'),\n"
                 + "       IFNULL(P.PRO_STOCK,0)\n"
-                + "FROM almacen.productos P  ORDER BY P.PRO_DESCRIPCION ASC", cbxDetalleBusqueda);
+                + "FROM productos P  ORDER BY P.PRO_DESCRIPCION ASC", cbxDetalleBusqueda);
     }
 
     private Textbox txtClienteNit;

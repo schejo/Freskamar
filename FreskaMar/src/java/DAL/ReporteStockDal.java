@@ -59,14 +59,14 @@ public class ReporteStockDal {
                 + "                    when 'P' then 'Pasillo Izquierdo'\n"
                 + "                 END AS UBICACION,\n"
                 + "       pro_stock\n"
-                + "FROM  almacen.productos\n"
+                + "FROM  productos\n"
                 + "WHERE pro_stock < 6\n"
                 + "AND    pro_fecha_alta >=  '" + dateInString + "'\n "
                 + "AND    pro_fecha_alta <=  '" + dateInString2 + "'";
 
 //        String query2 = " select  SUM( pro_precio_venta) as PRECIO,\n"
 //                + "	     SUM(pro_stock) as STOCK\n" 
-//                +  "   from almacen.productos";
+//                +  "   from productos";
 
         try {
             conexion = cnn.Conexion();

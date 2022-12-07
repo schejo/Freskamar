@@ -35,8 +35,8 @@ public class VentaPagoDal {
                 + "WHEN 'T'THEN 'TARJETA' \n"
                 + "WHEN 'C' THEN 'CHEQUE' \n"
                 + "END   AS TIPO_PAGO \n"
-                + "FROM   almacen.productos a, \n"
-                + "       almacen.ventas b \n"
+                + "FROM   productos a, \n"
+                + "       ventas b \n"
                 + "WHERE  a.pro_id = b.ven_pro_codigo \n"
                 + "AND    b.ven_tipo_pago = '" + pago + "'";
 
@@ -45,8 +45,8 @@ public class VentaPagoDal {
                 + "       SUM(b.ven_descuento) as DESCUENTO, \n"
                 + "       SUM( b.ven_total ) as GANACIA, \n"
                 + "       SUM(b.ven_cantidad) as CANTIDAD \n"
-                + " FROM      almacen.productos a, \n"
-                + "   		  almacen.ventas b \n"
+                + " FROM      productos a, \n"
+                + "   		  ventas b \n"
                 + " WHERE  a.pro_id = b.ven_pro_codigo \n" 
                 + " AND    b.ven_tipo_pago = '" + pago + "'";*/
 

@@ -112,7 +112,7 @@ public class MovimientosDal {
             String cantidad) throws SQLException, ClassNotFoundException {
         Statement st = null;
         ResultSet rs = null;
-        String sql = "INSERT INTO almacen.mov_productos"
+        String sql = "INSERT INTO mov_productos"
                 + "(mov_pro_codigo,"
                 + " mov_correlativo,"
                 + " mov_precio_unitario,"
@@ -170,7 +170,7 @@ public class MovimientosDal {
             System.out.println("Actualizar " + codigo);
             st = conexion.createStatement();
 
-            st.executeUpdate("UPDATE almacen.mov_productos set "
+            st.executeUpdate("UPDATE mov_productos set "
                     + ",mov_correlativo = '" + correlativo + "'"
                     + ",mov_precio_unitario = '" + precio + "'"
                     + ",mov_fecha_ingreso = STR_TO_DATE('" + ingreso + "','%d/%m/%Y') "
@@ -207,7 +207,7 @@ public class MovimientosDal {
             System.out.println("Eliminar " + codigo);
             st = conexion.createStatement();
 
-            st.executeUpdate("DELETE almacen.mov_productos WHERE mov_pro_codigo = '" + codigo + "' ");
+            st.executeUpdate("DELETE mov_productos WHERE mov_pro_codigo = '" + codigo + "' ");
             Clients.showNotification("REGISTRO ELIMINADO <br/> CON EXITO  <br/>");
             System.out.println("Eliminacion Exitosa.! ");
             st.close();
@@ -238,7 +238,7 @@ public class MovimientosDal {
             System.out.println("Actualizar " + codigo);
             st = conexion.createStatement();
 
-            st.executeUpdate("UPDATE almacen.productos "
+            st.executeUpdate("UPDATE productos "
                     + "set pro_stock = pro_stock +" + valor + " ,"
                     + " pro_precio_venta = +" + precios + " "
                     + " WHERE pro_id = '" + codigo + "'  ");
@@ -263,7 +263,7 @@ public class MovimientosDal {
     public String Correlativo(String codigo) throws ClassNotFoundException, SQLException {
         Statement st = null;
         ResultSet rs = null;
-        String query = "SELECT count(mov_correlativo)+1 AS correlativo FROM almacen.mov_productos WHERE mov_pro_codigo='" + codigo + "' ";
+        String query = "SELECT count(mov_correlativo)+1 AS correlativo FROM mov_productos WHERE mov_pro_codigo='" + codigo + "' ";
         String resp = "";
         try {
             conexion = cnn.Conexion();

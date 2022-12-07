@@ -95,7 +95,7 @@ public class GraficaPorTipoDal {
                     + "  when 'O' then 'OTROS'\n"
                     + "  END AS TIPO,\n"
                     + "  COUNT(pro_stock) AS CANTIDAD\n"
-                    + "  FROM  almacen.productos\n"
+                    + "  FROM  productos\n"
                     + "  GROUP BY tipo";
 
             smt = conn.prepareStatement(sql);

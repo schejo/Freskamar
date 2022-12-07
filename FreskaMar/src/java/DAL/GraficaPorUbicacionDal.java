@@ -37,7 +37,7 @@ public class GraficaPorUbicacionDal {
                     //+ "	when 'T' then 'TALLER'\n"
                     + " END AS UBICACION,\n"
                     + " COUNT(pro_id) AS CANTIDAD\n"
-                    + "	FROM  almacen.productos\n"
+                    + "	FROM  productos\n"
                     + " GROUP BY UBICACION";
 
             smt = conn.prepareStatement(sql);
@@ -91,7 +91,7 @@ public class GraficaPorUbicacionDal {
                     //+ "	when 'T' then 'TALLER'\n"
                     + " END AS UBICACION,\n"
                     + " COUNT(pro_stock) AS CANTIDAD\n"
-                    + "	FROM  almacen.productos\n"
+                    + "	FROM  productos\n"
                     + " GROUP BY UBICACION";
             
             smt = conn.prepareStatement(sql);

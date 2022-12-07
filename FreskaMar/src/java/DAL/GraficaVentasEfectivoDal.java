@@ -30,7 +30,7 @@ public class GraficaVentasEfectivoDal {
                     + "                      when 'C' then 'CREDITO'\n"
                     + "                      END AS TIPO_PAGO,\n"
                     + "                      COUNT(fac_numero) AS CANTIDAD\n"
-                    + "                      FROM  almacen.factura \n"
+                    + "                      FROM  factura \n"
                     + "                      GROPU BY fac_tipo_pago";
 
             smt = conn.prepareStatement(sql);
@@ -78,7 +78,7 @@ public class GraficaVentasEfectivoDal {
                     + "                      when 'C' then 'CREDITO'\n"
                     + "                      END AS TIPO_PAGO,\n"
                     + "                      COUNT(fac_numero) AS CANTIDAD\n"
-                    + "                      from  almacen.factura \n"
+                    + "                      from  factura \n"
                     + "                      GROUP BY fac_tipo_pago";
 
             smt = conn.prepareStatement(sql);

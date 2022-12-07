@@ -24,7 +24,7 @@ public class UsuarioDal {
         Statement st = null;
         ResultSet rs = null;
         int resp = 0;
-        String sql = "SELECT * FROM almacen.usuarios WHERE usu_usuario = '" + user + "' AND usu_password='" + pass + "'  ";
+        String sql = "SELECT * FROM usuarios WHERE usu_usuario = '" + user + "' AND usu_password='" + pass + "'  ";
         try {
             conexion = cnn.Conexion();
             st = conexion.createStatement();
@@ -53,7 +53,7 @@ public class UsuarioDal {
                 + " trim(usu_rol),"
                 + " trim(usu_fecha_crea),"
                 + " trim(usu_fecha_vence)"
-                + " FROM almacen.usuarios u WHERE UPPER(usu_usuario) = '" + usuario.toUpperCase() + "' ";
+                + " FROM usuarios u WHERE UPPER(usu_usuario) = '" + usuario.toUpperCase() + "' ";
         try {
             conexion = cnn.Conexion();
             st = conexion.createStatement();
@@ -95,7 +95,7 @@ public class UsuarioDal {
                 + " trim(usu_rol,)"
                 + " trim(usu_fecha_crea,)"
                 + " trim(usu_fecha_vence)"
-                + " FROM almacen.usuarios WHERE usu_codigo = '" + cod + "' ";
+                + " FROM usuarios WHERE usu_codigo = '" + cod + "' ";
         try {
             conexion = cnn.Conexion();
             st = conexion.createStatement();
@@ -139,7 +139,7 @@ public class UsuarioDal {
                 + " trim(usu_rol), "
                 + " trim(DATE_FORMAT(usu_fecha_crea, '%d/%m/%Y')),"
                 + " trim(DATE_FORMAT(usu_fecha_vence, '%d/%m/%Y'))"
-                + " FROM almacen.usuarios ORDER BY  usu_codigo asc";
+                + " FROM usuarios ORDER BY  usu_codigo asc";
 
         try {
             conexion = cnn.Conexion();
@@ -178,7 +178,7 @@ public class UsuarioDal {
                         String rol, String crea, String vence) throws SQLException, ClassNotFoundException {
         Statement st = null;
         ResultSet rs = null;
-        String sql = "INSERT INTO almacen.usuarios"
+        String sql = "INSERT INTO usuarios"
                 + "(usu_codigo,"
                 + " usu_nombre,"
                 + "usu_telefono,"
@@ -188,7 +188,7 @@ public class UsuarioDal {
                 + " usu_fecha_crea,"
                 + " usu_fecha_vence)"
                 + " VALUES(?,?,?,?,?,?,STR_TO_DATE(?,'%d/%m/%Y'),STR_TO_DATE(?,'%d/%m/%Y'))";
-        String sql0 = "SELECT MAX(usu_codigo)+1 AS codigo FROM almacen.usuarios";
+        String sql0 = "SELECT MAX(usu_codigo)+1 AS codigo FROM usuarios";
         try {
             conexion = cnn.Conexion();
             conexion.setAutoCommit(false);
@@ -241,7 +241,7 @@ public class UsuarioDal {
             System.out.println("Actualizar " + codigo);
             st = conexion.createStatement();
 
-            st.executeUpdate("UPDATE almacen.usuarios SET usu_nombre = '" + nombre + "'"
+            st.executeUpdate("UPDATE usuarios SET usu_nombre = '" + nombre + "'"
                     + ",usu_telefono = '" + celular + "'"
                     + ",usu_usuario = '" + usuario + "'"
                     + ",usu_password = '" + password + "'"
@@ -279,7 +279,7 @@ public class UsuarioDal {
             System.out.println("Eliminar " + codigo);
             st = conexion.createStatement();
 
-            st.executeUpdate("DELETE FROM almacen.usuarios WHERE usu_codigo = " + codigo + " ");
+            st.executeUpdate("DELETE FROM usuarios WHERE usu_codigo = " + codigo + " ");
             Clients.showNotification("REGISTRO ELIMINADO <br/> CON EXITO  <br/>");
             System.out.println("Eliminacion Exitosa.! ");
             st.close();

@@ -31,7 +31,7 @@ public class VentasDal {
             try {
                 int total = detalles.size() + 2;
 
-                String sql = "INSERT INTO almacen.prefactura VALUES ((SELECT IFNULL(MAX(prefac_id), 0)+1 FROM almacen.prefactura u),"
+                String sql = "INSERT INTO prefactura VALUES ((SELECT IFNULL(MAX(prefac_id), 0)+1 FROM prefactura u),"
                         + "?,?,?,?,?,?,now(),?,null,null)";
                 conn.setAutoCommit(false);
                 smt = conn.prepareStatement(sql);
@@ -47,7 +47,7 @@ public class VentasDal {
                 smt.close();
 
                 for (int i = 0; i < detalles.size(); i++) {
-                    sql = "INSERT INTO almacen.detalle_prefactura values ((SELECT MAX(prefac_id) FROM almacen.prefactura u),"
+                    sql = "INSERT INTO detalle_prefactura values ((SELECT MAX(prefac_id) FROM prefactura u),"
                             + "?,'" + detalles.get(i).getDetProductoPrecioVenta() + "','" + detalles.get(i).getProductoDescuento() + "',?)";
                     //conn.setAutoCommit(false);
                     smt = conn.prepareStatement(sql);
@@ -56,7 +56,7 @@ public class VentasDal {
 
                     result += smt.executeUpdate();
 
-                    sql = "UPDATE almacen.productos SET pro_stock = pro_stock -" + detalles.get(i).getProductoCantidad() + " "
+                    sql = "UPDATE productos SET pro_stock = pro_stock -" + detalles.get(i).getProductoCantidad() + " "
                             + "where pro_id = '" + detalles.get(i).getDetProductoId() + "'";
                     smt = conn.prepareStatement(sql);
                     smt.executeUpdate();
@@ -64,8 +64,8 @@ public class VentasDal {
                     smt.close();
                 }
 
-                sql = "INSERT INTO almacen.factura VALUES (?,(SELECT IFNULL(MAX(fac_numero), 0)+1 FROM almacen.factura u WHERE fac_serie ='" + modelo.getFacturaSerie() + "'),"
-                        + "(SELECT MAX(prefac_id) FROM almacen.prefactura u),?,?," + modelo.getFacturaSubtotal() + "," + modelo.getFacturaTotal() + "," + modelo.getFacturaDescuento() + ","
+                sql = "INSERT INTO factura VALUES (?,(SELECT IFNULL(MAX(fac_numero), 0)+1 FROM factura u WHERE fac_serie ='" + modelo.getFacturaSerie() + "'),"
+                        + "(SELECT MAX(prefac_id) FROM prefactura u),?,?," + modelo.getFacturaSubtotal() + "," + modelo.getFacturaTotal() + "," + modelo.getFacturaDescuento() + ","
                         + "now(),?,null," + (!modelo.getFacturaPagoEfectivo().equals("") ? modelo.getFacturaPagoEfectivo() : "0") + "," + (!modelo.getFacturaPagoTarjeta().equals("") ? modelo.getFacturaPagoTarjeta() : "0") + ","
                         + "'" + (!modelo.getFacturaReferenciaTarjeta().equals("") ? modelo.getFacturaReferenciaTarjeta() : "N/A") + "'," + (!modelo.getFacturaCredito().equals("") ? modelo.getFacturaCredito() : "0") + ","
                         + "?,?,?,?,?,?,"
@@ -125,7 +125,7 @@ public class VentasDal {
                 + " trim(ven_total)"
                 //   + " trim(ven_nit),"
                 //   + " trim(ven_nombre)"
-                + " FROM Almacen.ventas WHERE ven_prod_codigo = '" + codigo + "' ";
+                + " FROM ventas WHERE ven_prod_codigo = '" + codigo + "' ";
         try {
             conexion = cnn.Conexion();
             st = conexion.createStatement();
@@ -173,7 +173,7 @@ public class VentasDal {
                 + " trim(ven_total)"
                 //  + " trim(ven_nit),"
                 //   + " trim(ven_nombre)"
-                + " FROM Almacen.ventas ORDER BY  ven_prod_codigo asc";
+                + " FROM ventas ORDER BY  ven_prod_codigo asc";
 
         try {
             conexion = cnn.Conexion();
@@ -215,7 +215,7 @@ public class VentasDal {
     /* String nombre*/) throws SQLException, ClassNotFoundException {
         Statement st = null;
         ResultSet rs = null;
-        String sql = "INSERT INTO Almacen.ventas"
+        String sql = "INSERT INTO ventas"
                 + "(ven_prod_codigo,"
                 + " ven_correlativo,"
                 + " ven_cantidad,"
@@ -281,7 +281,7 @@ public class VentasDal {
             conexion.setAutoCommit(false);
             st = conexion.createStatement();
 
-            st.executeUpdate("UPDATE Almacen.ventas SET ven_correlativo= '" + correlativo + "'"
+            st.executeUpdate("UPDATE ventas SET ven_correlativo= '" + correlativo + "'"
                     + ",ven_cantidad = '" + cantidad + "'"
                     + ",ven_precio = '" + precio + "'"
                     + ",ven_usuario = '" + usuario + "'"
@@ -319,7 +319,7 @@ public class VentasDal {
             System.out.println("Eliminar " + codigo);
             st = conexion.createStatement();
 
-            st.executeUpdate("DELETE Almacen.ventas WHERE ven_prod_codigo = '" + codigo + "' ");
+            st.executeUpdate("DELETE ventas WHERE ven_prod_codigo = '" + codigo + "' ");
             Clients.showNotification("REGISTRO ELIMINADO <br/> CON EXITO  <br/>");
             System.out.println("Eliminacion Exitosa.! ");
             st.close();
@@ -338,7 +338,7 @@ public class VentasDal {
     public List<VentasMd> Correlativo(String codigo) throws ClassNotFoundException, SQLException {
         Statement st = null;
         ResultSet rs = null;
-        String query = "SELECT COUNT(ven_correlativo)+1 AS correlativo, ven_precio FROM Almacen.ventas WHERE ven_prod_codigo='" + codigo + "' ";
+        String query = "SELECT COUNT(ven_correlativo)+1 AS correlativo, ven_precio FROM ventas WHERE ven_prod_codigo='" + codigo + "' ";
         List<VentasMd> allVentas = new ArrayList<VentasMd>();
         try {
             conexion = cnn.Conexion();
@@ -377,7 +377,7 @@ public class VentasDal {
             System.out.println("Actualizar " + codigo);
             st = conexion.createStatement();
 
-            st.executeUpdate("UPDATE Almacen.productos "
+            st.executeUpdate("UPDATE productos "
                     + "SET pro_stock = pro_stock -" + valor + " "
                     + " WHERE pro_id = '" + codigo + "'  ");
 
@@ -401,7 +401,7 @@ public class VentasDal {
     public String Existencia(String codigo) throws ClassNotFoundException, SQLException {
         Statement st = null;
         ResultSet rs = null;
-        String query = "SELECT prod_saldo FROM Almacen.productos WHERE prod_codigo='" + codigo + "' ";
+        String query = "SELECT prod_saldo FROM productos WHERE prod_codigo='" + codigo + "' ";
         String resp = "";
         try {
             conexion = cnn.Conexion();
@@ -463,7 +463,7 @@ public class VentasDal {
                     + "						   upper(c.CL_NOMBRE),\n"
                     + "                           c.CL_NIT,\n"
                     + "                           c.CL_DIRECCION\n"
-                    + "                    FROM factura F, prefactura p, CLIENTE c ,usuarios u\n"
+                    + "                    FROM factura F, prefactura p, cliente c ,usuarios u\n"
                     + "                    WHERE F.fac_pre_numero = p.prefac_id  \n"
                     + "                    AND p.prefac_cl_id = c.cl_id\n"
                     + "                    AND p.prefac_usu_id = u.usu_codigo \n"

@@ -25,9 +25,9 @@ public class ReporteBajasDal {
         String query = "SELECT a.pro_descripcion,b.mov_precio_unitario,c.baj_cantidad,\n"
                 + "       c.baj_fecha,\n"
                 + "       ( (b.mov_precio_unitario * c.baj_cantidad )) as BAJA_TOTAL\n"
-                + "FROM   almacen.productos a,\n"
-                + "       almacen.mov_productos b,\n"
-                + "       almacen.bajas c \n"
+                + "FROM   productos a,\n"
+                + "       mov_productos b,\n"
+                + "       bajas c \n"
                 + "WHERE  a.pro_id = b. mov_pro_codigo\n"
                 + "AND    a.pro_id = c. baj_pro_codigo";
         try {

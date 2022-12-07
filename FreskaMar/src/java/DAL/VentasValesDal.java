@@ -31,7 +31,7 @@ public class VentasValesDal {
             try {
                 int total = detalles.size() + 2;   //3 sql + un update = 4 cambiando 2 a 3 
 
-                String sql = "INSERT INTO almacen.prefactura VALUES ((SELECT IFNULL(MAX(prefac_id), 0)+1 FROM almacen.prefactura u),"
+                String sql = "INSERT INTO prefactura VALUES ((SELECT IFNULL(MAX(prefac_id), 0)+1 FROM prefactura u),"
                         + "?,?,?,?,?,?,now(),?,null,null)";
                 conn.setAutoCommit(false);
                 smt = conn.prepareStatement(sql);
@@ -48,7 +48,7 @@ public class VentasValesDal {
                 
                 
                 for (int i = 0; i < detalles.size(); i++) {
-                    sql = "INSERT INTO almacen.detalle_prefactura VALUES ((SELECT MAX(prefac_id) FROM almacen.prefactura u),"
+                    sql = "INSERT INTO detalle_prefactura VALUES ((SELECT MAX(prefac_id) FROM prefactura u),"
                             + "?,'" + detalles.get(i).getDetProductoPrecioVenta() + "','" + detalles.get(i).getProductoDescuento() + "',?)";
                    // conn.setAutoCommit(false);
                     smt = conn.prepareStatement(sql);
@@ -59,7 +59,7 @@ public class VentasValesDal {
                     smt.close();
                     
                     // esta es una prueba 22/05/2022 
-                    sql = "UPDATE almacen.productos SET pro_stock = pro_stock -" + detalles.get(i).getProductoCantidad() + " "
+                    sql = "UPDATE productos SET pro_stock = pro_stock -" + detalles.get(i).getProductoCantidad() + " "
                             + "WHERE pro_id = '" + detalles.get(i).getDetProductoId() + "'";
                     smt = conn.prepareStatement(sql);
                     smt.executeUpdate();
@@ -70,8 +70,8 @@ public class VentasValesDal {
                     
                 }
 
-                sql = "INSERT INTO almacen.factura VALUES (?,(SELECT IFNULL(MAX(fac_numero), 0)+1 FROM almacen.factura u where fac_serie ='" + modelo.getFacturaSerie() + "'),"
-                        + "(SELECT MAX(prefac_id) FROM almacen.prefactura u),?,?," + modelo.getFacturaSubtotal() + "," + modelo.getFacturaTotal() + "," + modelo.getFacturaDescuento() + ","
+                sql = "INSERT INTO factura VALUES (?,(SELECT IFNULL(MAX(fac_numero), 0)+1 FROM factura u where fac_serie ='" + modelo.getFacturaSerie() + "'),"
+                        + "(SELECT MAX(prefac_id) FROM prefactura u),?,?," + modelo.getFacturaSubtotal() + "," + modelo.getFacturaTotal() + "," + modelo.getFacturaDescuento() + ","
                         + "now(),?,null," + (!modelo.getFacturaPagoEfectivo().equals("") ? modelo.getFacturaPagoEfectivo() : "0") + "," + (!modelo.getFacturaPagoTarjeta().equals("") ? modelo.getFacturaPagoTarjeta() : "0") + ","
                         + "'" + (!modelo.getFacturaReferenciaTarjeta().equals("") ? modelo.getFacturaReferenciaTarjeta() : "N/A") + "'," + (!modelo.getFacturaCredito().equals("") ? modelo.getFacturaCredito() : "0") + ","
                         + "?,?,?,?,?,?,"
@@ -186,7 +186,7 @@ public class VentasValesDal {
                 + " trim(ven_total)"
                 //  + " trim(ven_nit),"
                 //   + " trim(ven_nombre)"
-                + " FROM Almacen.ventas ORDER BY  ven_prod_codigo asc";
+                + " FROM ventas ORDER BY  ven_prod_codigo asc";
 
         try {
             conexion = cnn.Conexion();
@@ -228,7 +228,7 @@ public class VentasValesDal {
     /* String nombre*/) throws SQLException, ClassNotFoundException {
         Statement st = null;
         ResultSet rs = null;
-        String sql = "INSERT INTO Almacen.ventas"
+        String sql = "INSERT INTO ventas"
                 + "(ven_prod_codigo,"
                 + " ven_correlativo,"
                 + " ven_cantidad,"
@@ -294,7 +294,7 @@ public class VentasValesDal {
             conexion.setAutoCommit(false);
             st = conexion.createStatement();
 
-            st.executeUpdate("UPDATE Almacen.ventas SET ven_correlativo= '" + correlativo + "'"
+            st.executeUpdate("UPDATE ventas SET ven_correlativo= '" + correlativo + "'"
                     + ",ven_cantidad = '" + cantidad + "'"
                     + ",ven_precio = '" + precio + "'"
                     + ",ven_usuario = '" + usuario + "'"
@@ -332,7 +332,7 @@ public class VentasValesDal {
             System.out.println("Eliminar " + codigo);
             st = conexion.createStatement();
 
-            st.executeUpdate("DELETE Almacen.ventas WHERE ven_prod_codigo = '" + codigo + "' ");
+            st.executeUpdate("DELETE ventas WHERE ven_prod_codigo = '" + codigo + "' ");
             Clients.showNotification("REGISTRO ELIMINADO <br/> CON EXITO  <br/>");
             System.out.println("Eliminacion Exitosa.! ");
             st.close();
@@ -390,7 +390,7 @@ public class VentasValesDal {
             System.out.println("Actualizar " + codigo);
             st = conexion.createStatement();
 
-            st.executeUpdate("UPDATE Almacen.productos "
+            st.executeUpdate("UPDATE productos "
                     + "SET pro_stock = pro_stock -" + valor + " "
                     + " WHERE pro_id = '" + codigo + "'  ");
 
