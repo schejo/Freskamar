@@ -1,0 +1,45 @@
+<zk xmlns:n="native">
+    <div>
+        <n:br/>
+        <n:br/>
+        <n:br/>
+        <n:br/>
+    </div>
+    <div class="col col-md-12 col-sm-12" apply="ctrl_.KardexTipoCtrl" >
+        <div class="col col-md-12 col-sm-12 text-center"> 
+            <div class="col col-md-12 col-xs-12">
+                <label value="KARDEX DE PRODUCTOS POR TIPO" style="font-size:25px;font-weight:bold;color:blue;" />
+            </div>
+            <n:br/>
+            <n:br/>
+            <n:br/>
+            <div sclass="col-md-12 col-sm-12 text-center" > 
+                <label value="FECHA" style="color: blue; font-weight: bold; font-size: 20px;"/>
+                <datebox id="fechaG" cols="11"   format="dd/MM/yyyy" locale="gt" style="font-weight: bold; font-size: 15px; margin-left:0px; heigh:20px; color:black;"/>
+               
+                <label class="txtlbs" value="TIPO PRODUCTO" style="color: blue; font-weight: bold; font-size: 20px;"/>
+                <combobox id="tipPro" width="20%" >
+                    <comboitem label = "GLOBOS" value = "G" />
+                    <comboitem label = "ADORNOS" value = "A" />
+                    <comboitem label = "PIÑATAS" value = "P" />
+                    <comboitem label = "INVITACIONES" value = "I" /> 
+                    <comboitem label = "DULCES" value = "D" />
+                    <comboitem label = "JUGUETES" value = "J" />
+                    <comboitem label = "PASTELES" value = "K" />
+                    <comboitem label = "SORPRESAS" value = "W" />
+                    <comboitem label = "VELAS" value = "V" />
+                    <comboitem label = "ACCESORIO DE VITRINA" value = "L" /> 
+                    <comboitem label = "OTROS" value = "O" /> 
+                </combobox>
+            </div> 
+            <n:br/>
+            <n:br/>
+            <n:br/>
+            <div class="col col-md-12 col-xs-12">
+                <button sclass="btn btn-success" id="btnDescargar" label="Descarga Reporte" iconSclass="z-icon-download" />    
+            </div>
+        </div>
+    </div>
+</zk>
+
+
