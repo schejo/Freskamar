@@ -52,7 +52,7 @@ public class menu extends GenericForwardComposer {
     }
 
     public void onClick$ItemBDD(Event evt) {
-        rootPagina.setSrc("/Vistas/VentasVales.zul");
+        rootPagina.setSrc("/Vistas/Ventasvales.zul");
     }
 
     public void onClick$ItemBV(Event evt) {

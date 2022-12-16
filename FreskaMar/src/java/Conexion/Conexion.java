@@ -12,7 +12,7 @@ public class Conexion {
         //if (cnx == null) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            cnx = DriverManager.getConnection("jdbc:mysql://base-administrada-do-user-12296041-0.b.db.ondigitalocean.com:25060/FreskaMar?user=freskamar&password=AVNS_62sw2B5dHH8GWkF4f9U&allowPublicKeyRetrieval=true&useSSL=false");
+            cnx = DriverManager.getConnection("jdbc:mysql://base-administrada-do-user-12296041-0.b.db.ondigitalocean.com:25060/FresKaMar?user=freskamar&password=AVNS_62sw2B5dHH8GWkF4f9U&allowPublicKeyRetrieval=true&useSSL=false");
 
             System.out.println("Conexion Exitosa a Base de Datos...!");
         } catch (Exception ex) {
