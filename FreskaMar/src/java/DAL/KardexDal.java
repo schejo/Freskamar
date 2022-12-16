@@ -53,7 +53,7 @@ public class KardexDal {
 "                 when 'T' then 'TALLER'\n" +
 "                END AS UBICACION,\n" +
 "                a.pro_stock,\n" +
-"                (a.pro_precio_venta * A.pro_stock) AS TOTAL\n" +
+"                (a.pro_precio_venta * a.pro_stock) AS TOTAL\n" +
 "                FROM productos a;";
 
         String query2 = "SELECT a.pro_id,a.pro_descripcion,\n"
