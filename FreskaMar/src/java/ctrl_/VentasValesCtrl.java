@@ -280,6 +280,9 @@ public class VentasValesCtrl extends Commons {
             }
         }
     }
+      public void onOK$txtProductoId(Event evt) throws SQLException {
+         onChange$txtProductoId(evt);
+     }
 
     public void onChange$txtProductoId(Event evt) throws SQLException {
         ProductosDal pro = new ProductosDal();
@@ -840,7 +843,7 @@ public class VentasValesCtrl extends Commons {
             cell2.setBorder(Rectangle.NO_BORDER);
             table2.addCell(cell2);
 
-            cell2 = new PdfPCell(new Phrase("CLIENTE: " + enc.getFacturaClienteId() + "  " + enc.getFacturaClienteNombre(), FontFactory.getFont(FontFactory.TIMES_ROMAN, 10, Font.BOLD)));
+            cell2 = new PdfPCell(new Phrase("CLIENTE: " + enc.getFacturaClienteId() + "  " + txtClienteNombre.getText(), FontFactory.getFont(FontFactory.TIMES_ROMAN, 10, Font.BOLD)));
             cell2.setColspan(10);
             cell2.setBorder(Rectangle.NO_BORDER);
             table2.addCell(cell2);

@@ -81,7 +81,7 @@
                         </div>
                         <div sclass="col-md-6">
                             <label value="NOMBRE " style="font-size:18px; font-weight:bold;"  />
-                            <textbox   id="txtClienteNombre"  width="100%" value="" readonly="true" style="font-size:16px;"   maxlength="900"/>
+                            <textbox   id="txtClienteNombre"  width="100%" value=""  style="font-size:16px;"   maxlength="900"/>
                      
                         </div>
                         <div sclass="col-md-2">

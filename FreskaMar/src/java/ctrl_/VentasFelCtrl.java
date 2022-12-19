@@ -742,6 +742,44 @@ public class VentasFelCtrl extends GenericForwardComposer {
         button.setLabel(label);
     }
 
+      private void Limpiartodo() {
+        cbxDetalleBusqueda.setText("");
+        txtProductoId.setText("");
+        txtProductoTipo.setText("");
+        txtProductoDescripcion.setText("");
+        txtProductoPrecio.setText("");
+        txtProductoDescuento.setText("");
+        txtProductoStock.setText("");
+        txtProductoCantidad.setText("");
+        txtClienteNit.setText("");
+
+        txtClienteNit.setText("");
+        txtClienteNombre.setText("");
+        txtClienteId.setText("");
+        txtClienteDireccion.setText("");
+        txtClienteTelefono.setText("");
+        txtClienteAlta.setText("");
+
+        txtSubtotal.setText("");
+        txtDescuentos.setText("");
+        txtTotal.setText("");
+
+        txtReferencia.setText("");
+        txtEfectivo.setText("");
+        txtTarjeta.setText("");
+
+        txtCredito.setText("");
+        txtCambio.setText("");
+        txtRecibido.setText("");
+
+        rows.getChildren().clear();
+
+        datos.removeAll(datos);
+    }
+      public void onClick$btnLimpiar(Event e) {
+        Limpiartodo();
+
+    }
     File f;
 
     public void PDF(FacturaMd enc/*, java.util.List<DetalleFacturaMd> lista*/) throws SQLException {
@@ -881,7 +919,7 @@ public class VentasFelCtrl extends GenericForwardComposer {
             cell2.setBorder(Rectangle.NO_BORDER);
             table2.addCell(cell2);
 
-            cell2 = new PdfPCell(new Phrase("CLIENTE: " + enc.getFacturaClienteId() + "  " + enc.getFacturaClienteNombre(), FontFactory.getFont(FontFactory.TIMES_ROMAN, 10, Font.BOLD)));
+            cell2 = new PdfPCell(new Phrase("CLIENTE: " + enc.getFacturaClienteId() + "  " + txtClienteNombre.getText(), FontFactory.getFont(FontFactory.TIMES_ROMAN, 10, Font.BOLD)));
             cell2.setColspan(10);
             cell2.setBorder(Rectangle.NO_BORDER);
             table2.addCell(cell2);
