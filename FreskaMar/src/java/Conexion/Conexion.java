@@ -16,7 +16,7 @@ public class Conexion {
             cnx = DriverManager.getConnection("jdbc:mysql://base-administrada-do-user-12296041-0.b.db.ondigitalocean.com:25060/FresKaMar?user=freskamar&password=AVNS_62sw2B5dHH8GWkF4f9U&allowPublicKeyRetrieval=true&useSSL=false");
             
              //pruebas
-                   cnx = DriverManager.getConnection("jdbc:mysql://db-mysql-nyc1-13705-do-user-12423640-0.b.db.ondigitalocean.com:25060/FresKaMar?allowPublicKeyRetrieval=true&serverTimezone=UTC&useSSL=false", "caluco", "AVNS_HSmsBW3gYs0lkszEsry");
+                //   cnx = DriverManager.getConnection("jdbc:mysql://db-mysql-nyc1-13705-do-user-12423640-0.b.db.ondigitalocean.com:25060/FresKaMar?allowPublicKeyRetrieval=true&serverTimezone=UTC&useSSL=false", "caluco", "AVNS_HSmsBW3gYs0lkszEsry");
 
             System.out.println("Conexion Exitosa a Base de Datos...!");
         } catch (Exception ex) {
